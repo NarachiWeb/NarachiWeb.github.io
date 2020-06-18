@@ -1,0 +1,57 @@
+/* Import main Inspinia style */
+@import "assets/styles/style";
+
+
+textarea{
+    resize: vertical;
+}
+
+.text-success {
+  color: #337ab7;
+}
+
+.text-error {
+  color: #ea2020;
+}
+
+.form-control:focus {
+  border-color: #477096;
+  box-shadow: 0 0 0 2px #fff inset;
+}
+
+
+.form-check {
+  padding: .4rem;
+  padding-left: 1.25rem;
+}
+
+.form-check label {
+  font-size: 14px;
+  padding-left: 10px;
+  color: #495057;
+}
+
+.form-check input[type=checkbox] {
+  -webkit-appearance: none;
+  border: 1px solid #999;
+  box-shadow: 0 0 0 3px #fff inset;
+  background: #fff;
+  width: 20px;
+  height: 20px;
+}
+
+.form-check input[type=checkbox]:checked {
+  background: #2f4050;
+  border-color: #2f4050;
+  box-shadow: 0 0 0 2px #fff inset;
+}
+
+.nav > li.active {
+  border-left: 4px solid #fff;
+  background: #293846;
+
+}
+.tabs-container .nav-tabs > li a:hover {
+  background: #ffffff;
+  border-color: #eaeaea;
+}

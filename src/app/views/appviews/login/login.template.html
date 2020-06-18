@@ -1,0 +1,36 @@
+<div class="middle-box loginscreen  animated fadeInDown">
+    <div class="ibox-content">
+      <div class="text-center">
+        <h2>Ingreso a Narachi</h2>
+         <hr />
+      </div>
+      <div class="m-t" role="form" action="#">
+        <div class="form-group">
+          <label>Usuario</label>
+          <input type="text" class="form-control" placeholder="Username" required="" [(ngModel)]="UserLogin.Username">
+        </div>
+        <div class="form-group">
+          <label>Contraseña</label>
+          <input type="password" class="form-control" placeholder="Password" required="" [(ngModel)]="UserLogin.Password">
+        </div>
+        <button type="submit" class="btn btn-success block full-width m-b" (click)="Login()"><i class="fas fa-door-open"></i> Login</button>
+
+        <div class="sk-spinner sk-spinner-three-bounce form-group" *ngIf="Loading">
+          <div class="sk-bounce1" style="background-color: #1c84c6"></div>
+          <div class="sk-bounce2" style="background-color: #1c84c6"></div>
+          <div class="sk-bounce3" style="background-color: #1c84c6"></div>
+        </div>
+
+        <div class="form-group text-center">
+          <p class="text-muted text-center"><small> ¿No posees una cuenta? <a [routerLink]="['/sign-up']">Regístrate</a> </small></p>
+          <p class="text-muted text-center"><small> ¿Olvidó su contraseña? <a>Recuperar</a> </small></p>
+
+
+        </div>
+
+
+      </div>
+    </div>
+</div>
+
+
