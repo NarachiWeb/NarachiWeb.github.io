@@ -1,0 +1,116 @@
+
+
+
+  <div class="wrapper wrapper-content animated fadeInDown">
+
+    <div class="tabs-container animated fadeInUp">
+      <ul class="nav nav-tabs" role="tablist">
+        <li><a  class="nav-link" [ngClass]="{'nav-link active': Profile}" data-toggle="tab" (click)="Profile = true"> <i class="fa fa-user-circle"></i> Perfil</a></li>
+        <li><a  class="nav-link" [ngClass]="{'nav-link active': !Profile}" data-toggle="tab" (click)="Profile = false"> <i class="fa fa-key"></i> Cambiar Contraseña</a></li>
+      </ul>
+      <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" *ngIf="Profile">
+          <div class="panel-body">
+
+            <div class="form-group text-center">
+              <div class="form-group">
+                <img *ngIf="Usuario.Avatar" alt="image" class="rounded-circle m-t-xs img-fluid" src="{{Usuario.Avatar}}" width="80" height="80" style="border-radius: 50%; cursor: pointer" (click)="avatarInput.click()">
+                <i class="fa fa-user-circle fa-5x" *ngIf="!Usuario.Avatar" style="cursor: pointer" (click)="avatarInput.click()"></i>
+                <input #avatarInput (click)="cameraButton($event)" (change)="processFile(avatarInput)" type="file" name="pic" accept="image/*" style="-ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=0)'; filter: alpha(opacity=0); -moz-opacity: 0; -khtml-opacity: 0; opacity: 0; width: 1px;">
+
+              </div>
+            </div>
+
+
+            <div class="row form-group">
+              <div class="col-lg-4">
+                <div class="form-group">
+                  <label>Nombre</label>
+                  <input class="form-control" name="Usuario.Nombre" [(ngModel)]="Usuario.Nombre" type="text" />
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="form-group">
+                  <label>Apellido</label>
+                  <input class="form-control" name="Usuario.Apellido" [(ngModel)]="Usuario.Apellido" type="text" />
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <label>Correo</label>
+                <div class='input-group'>
+                  <input type="text" class="form-control" placeholder="Correo" name="Usuario.Correo" [(ngModel)]="Usuario.Correo" disabled />
+                  <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-envelope"></span>
+                  </span>
+                </div>
+              </div>
+             
+            </div>
+
+            <div class="row form-group">
+              <div class="col-lg-4">
+                <label>Nickname</label>
+                <input class="form-control" name="Usuario.Username" [(ngModel)]="Usuario.Nickname" type="text" />
+
+
+              </div>
+
+
+              <div class="col-lg-4">
+                <label>Genero</label>
+                <select class="form-control" name="Usuario.Genero" [(ngModel)]="Usuario.Genero">
+                  <option *ngFor="let g of Generos" [ngValue]="g.Id">{{g.Nombre}}</option>
+                </select>
+              </div>
+
+              <div class="col-lg-4">
+                <label>Fecha de nacimiento</label>
+                <div class='input-group'>
+                  <input type="date" class="form-control" name="Usuario.Edad" (ngModelChange)="Usuario.Edad=$event" [ngModel]="Usuario.Edad | date:'yyyy-MM-dd'" />
+                  <span class="input-group-addon">
+                    <span class="fa fa-birthday-cake"></span>
+                  </span>
+                </div>
+              </div>
+
+            </div>
+            <div class="form-group">
+              <button class="btn btn-success " type="button" (click)="saveUser()">Guardar</button>
+            </div>
+
+          </div>
+        </div>
+        </div>
+        <div role="tabpanel" id="tab-2" class="tab-pane" *ngIf="!Profile">
+          <div class="panel-body">
+
+
+              <div class="form-group">
+                <label>Contraseña actual</label>
+                <input type="password" class="form-control" name="User.Password" [(ngModel)]="User.Password" />
+              </div>
+              <div class="form-group">
+                <label>Nueva contraseña</label>
+                <input type="password" class="form-control" name="User.PasswordNew" [(ngModel)]="User.PasswordNew" />
+              </div>
+              <div class="form-group">
+                <label>Confirmar contraseña</label>
+                <input type="password" class="form-control" name="User.Repeat" [(ngModel)]="User.Repeat" />
+              </div>
+
+
+            <div class="form-group">
+              <button class="btn btn-success" type="button" (click)="changePassword()" [disabled]="!User.Password || !(User.PasswordNew == User.Repeat) || !(User.PasswordNew || User.Repeat)">Cambiar Clave</button>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+
+

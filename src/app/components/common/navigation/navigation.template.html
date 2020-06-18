@@ -1,0 +1,42 @@
+<nav class="navbar-default navbar-static-side" role="navigation">
+  <div class="sidebar-collapse">
+    <ul class="nav metismenu" id="side-menu">
+      <li class="nav-header">
+        <div class="profile-element" dropdown [routerLink]="['/profile']">
+          <img alt="image" class="img-circle" src="{{Usuario.Avatar}}" width="50" height="50" *ngIf="Usuario.Avatar">
+          <i class="fa fa-user-circle fa-3x" *ngIf="!Usuario.Avatar" style="color: snow"></i>
+          <a *ngIf="Usuario.Nombre && Usuario.Apellido">      <span class="block m-t-xs font-bold">{{Usuario.Nombre + ' ' + Usuario.Apellido}} </span></a>
+          <a *ngIf="!Usuario.Nombre || !Usuario.Apellido"><span class="block m-t-xs"><b>Completar Perfil <i class="fa fa-exclamation-circle"></i></b></span></a>
+
+        </div>
+        <div class="logo-element">
+          <img src="assets/imgs/log.png" />
+          <!--<i class="fa fa-archive"></i>-->
+        </div>
+      </li>
+      <li [ngClass]="{active: activeRoute('profile')}"> <a [routerLink]="['/profile']"><i class="fa fa-user-circle" aria-hidden="true"></i><span class="nav-label">Perfil</span></a>
+      </li>
+      <li [ngClass]="{active: activeRoute('records')}">
+        <a href="#"><i class="fa fa-book"></i> <span class="nav-label">Registros</span> <span class="fa arrow"></span> </a>
+        <ul class="nav nav-second-level collapse">
+          <li [ngClass]="{active: activeRoute('/records/add')}"><a [routerLink]="['/records/add']">Nuevo registro</a></li>
+          <li [ngClass]="{active: activeRoute('/records/list')}"><a [routerLink]="['/records/list']">Lista de registros</a></li>
+        </ul>
+      </li>
+
+      <li [ngClass]="{active: activeRoute('administration')}" *ngIf="Privilegio >= 2">
+        <a href="#"><i class="fas fa-briefcase"></i> <span class="nav-label">Administración</span> <span class="fa arrow"></span> </a>
+        <ul class="nav nav-second-level collapse">
+          <li [ngClass]="{active: activeRoute('/administration/news')}" *ngIf="Privilegio >= 4"><a [routerLink]="['/administration/news']">Publicaciones</a></li>
+          <li [ngClass]="{active: activeRoute('/administration/champions')}" *ngIf="Privilegio >= 3"><a [routerLink]="['/administration/champions']">Campeones</a></li>
+          <li [ngClass]="{active: activeRoute('/administration/records')}" *ngIf="Privilegio >= 2"><a [routerLink]="['/administration/records']">Registros</a></li>
+          <li [ngClass]="{active: activeRoute('/administration/users')}" *ngIf="Privilegio >= 3"><a [routerLink]="['/administration/users']">Usuarios</a></li>
+        </ul>
+      </li>
+      <li (click)="logOut()">
+        <a><i class="fas fa-door-closed"></i> <span class="nav-label"> Salir</span> </a>
+      </li>
+    </ul>
+
+  </div>
+</nav>

@@ -1,0 +1,13 @@
+<!-- Main view/routes wrapper-->
+  <router-outlet>
+    <div id="toast-container" class="toast-top-center  animated fadeInUp" aria-live="polite" role="alert" *ngIf="Notificacion.visible">
+      <div class="toast toast-{{Notificacion.class}}" style="">
+       <button type="button" class="toast-close-button" role="button" (click)="closeNot()">×</button>
+        <div class="toast-message">
+          {{Notificacion.message}}
+        </div>
+      </div>
+    </div>
+
+
+  </router-outlet>
