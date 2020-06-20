@@ -11,6 +11,7 @@ import { NotificationService } from '../../../services/notification.service';
 export class RecordsComponent {
 
   DataRecord = new DataRegistro();
+  Loading = false;
 
   constructor(private dataService: DataService, private notificationService: NotificationService) {
   }
@@ -21,8 +22,9 @@ export class RecordsComponent {
   }
 
   getDataRecords() {
+    this.Loading = true;
     this.dataService.getDataRecords().subscribe(us => {
-
+      this.Loading = false;
       this.DataRecord = <DataRegistro>JSON.parse(us.text());
 
     },

@@ -111,7 +111,8 @@ export class ListComponent {
   updateRecord(registro: Registro) {
 
     this.recordService.UpdateRecord(registro).subscribe(us => {
-     this.notificationService.showDialog("success", "Registro editado con éxito.", 4000);
+      this.notificationService.showDialog("success", "Registro editado con éxito.", 4000);
+      registro.Edit = false;
     });
   }
 
@@ -160,5 +161,14 @@ export class ListComponent {
     return this.datePipe.transform(FechaNacimiento, "dd/MM/yyyy");
   }
 
+  selectRecord(registro: Registro) {
+    this.SelectedRecord = registro;
+  }
+
+  anyRecordEditing(): boolean {
+
+    var record = this.Registros.find(x => x.Edit);
+    return record != null;
+  }
 
 }

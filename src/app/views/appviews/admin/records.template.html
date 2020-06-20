@@ -2,58 +2,71 @@
 
   <div class="tabs-container animated fadeInUp">
     <ul class="nav nav-tabs" role="tablist">
-      <li><a class="nav-link active" data-toggle="tab" href="#tab-1"> <i class="far fa-chart-bar"></i></a></li>
-      <li><a class="nav-link" data-toggle="tab">This is second tab</a></li>
+      <li><a class="nav-link active" data-toggle="tab" href="#tab-1"> <i class="far fa-chart-bar"></i> Registros</a></li>
+      <!--<li><a class="nav-link" data-toggle="tab">This is second tab</a></li>-->
     </ul>
     <div class="tab-content">
       <div role="tabpanel" id="tab-1" class="tab-pane active">
+      
         <div class="panel-body">
+          <div class="spiner-example" *ngIf="Loading">
+            <div class="sk-spinner sk-spinner-three-bounce form-group">
+              <div class="sk-bounce1"></div>
+              <div class="sk-bounce2"></div>
+              <div class="sk-bounce3"></div>
+            </div>
 
-          <div class="col-lg-3">
-            <div class="ibox">
-              Anotaciones
-              <div class="ibox-content">
 
-                <h1 class="no-margins">
-                  {{DataRecord.Anotaciones}}
-                </h1>
+          </div>
 
+          <div *ngIf="!Loading">
+            <div class="col-lg-3">
+              <div class="ibox">
+                Anotaciones
+                <div class="ibox-content">
+
+                  <h1 class="no-margins">
+                    {{DataRecord.Anotaciones}}
+                  </h1>
+
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-3">
+              Registro con Campeón
+              <div class="ibox">
+                <div class="ibox-content">
+                  <h1 class="no-margins">
+                    {{DataRecord.RegistrosConCampeon}}
+                  </h1>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-3">
+              Registro contra Campeón
+              <div class="ibox">
+                <div class="ibox-content">
+                  <h1 class="no-margins">
+                    {{DataRecord.RegistrosContraCampeones}}
+                  </h1>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-3">
+              <b>Total</b>
+              <div class="ibox">
+                <div class="ibox-content">
+                  <h1 class="no-margins">
+                    <b style="word-break: break-all">{{DataRecord.Total}}</b>
+                  </h1>
+                </div>
               </div>
             </div>
           </div>
-
-          <div class="col-lg-3">
-            Registro con Campeón
-            <div class="ibox">
-              <div class="ibox-content">
-                <h1 class="no-margins">
-                  {{DataRecord.RegistrosConCampeon}}
-                </h1>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-3">
-            Registro contra Campeón
-            <div class="ibox">
-              <div class="ibox-content">
-                <h1 class="no-margins">
-                  {{DataRecord.RegistrosContraCampeones}}
-                </h1>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-3">
-            <b>Total</b>
-            <div class="ibox">
-              <div class="ibox-content">
-                <h1 class="no-margins">
-                  <b style="word-break: break-all">{{DataRecord.Total}}</b>
-                </h1>
-              </div>
-            </div>
-          </div>
+       
 
         </div>
       </div>

@@ -1,27 +1,15 @@
-
-
-
 <div class="wrapper wrapper-content ">
 
-
-
-
   <div class="ibox">
-    <div class="ibox-title"> <h4><i class="fa fa-archive"></i> Lista de Registros</h4> </div>
+    <div class="ibox-title">
+    <h4><i class="fa fa-archive"></i> Lista de Registros</h4>
+    </div>
 
     <div class="ibox-content" id="records">
 
-
-
       <div class="form-group">
-        <button type="button" class="btn btn-primary btn-outline" data-toggle="modal" data-target="#modalBusqueda">
-          <i class="fa fa-filter"></i>
-          Parámetros de Búsqueda
-        </button>
-        <button type="button" class="btn btn-primary btn-outline" data-toggle="modal" data-target="#modalCampeones">
-          <i class="fa fa-search"></i>
-          Búsqueda de Campeones
-        </button>
+        <button type="button" class="btn btn-primary btn-outline" data-toggle="modal" data-target="#modalBusqueda"> <i class="fa fa-filter"></i> Parámetros de Búsqueda  </button>
+        <button type="button" class="btn btn-primary btn-outline" data-toggle="modal" data-target="#modalCampeones"> <i class="fa fa-search"></i> Búsqueda de Campeones </button>
       </div>
 
 
@@ -31,8 +19,6 @@
           <div class="sk-bounce2"></div>
           <div class="sk-bounce3"></div>
         </div>
-
-
       </div>
 
       <div class="table-responsive animated fadeInDown" *ngIf="Registros.length > 0 && !Loading">
@@ -42,28 +28,50 @@
               <th class="text-center">Campeon</th>
               <th class="text-center">Enemigo</th>
               <th class="text-center">Registro</th>
+              <th class="text-center" *ngIf="!anyRecordEditing()"></th>
               <th class="text-center"></th>
+              <th class="text-center" *ngIf="anyRecordEditing()"></th>
+              <th class="text-center" *ngIf="anyRecordEditing()"></th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let r of Registros" style="cursor: pointer;">
+
               <td width="1" class="text-center" style="vertical-align: middle;">
                 <div>
-
-                  <img src="assets/Champions/{{r.Campeon.Nombre}}.png" width="30" height="30" *ngIf="r.Campeon" title="{{r.Campeon.Nombre}}"/>
+                  <img src="assets/Champions/{{r.Campeon.Nombre}}.png" width="30" height="30" *ngIf="r.Campeon" title="{{r.Campeon.Nombre}}" />
                   <label *ngIf="!r.Campeon">—</label>
                 </div>
               </td>
-              <td width="1" class="text-center" style="vertical-align: middle;"> <img *ngIf="r.Enemigo" src="assets/Champions/{{r.Enemigo.Nombre}}.png" width="30" height="30" title="{{r.Enemigo.Nombre}}" /> <label *ngIf="!r.Enemigo">—</label></td>
-              <td>
-                {{r.Error}}
+
+              <td width="1" class="text-center" style="vertical-align: middle;">
+                <img *ngIf="r.Enemigo" src="assets/Champions/{{r.Enemigo.Nombre}}.png" width="30" height="30" title="{{r.Enemigo.Nombre}}" />
+                <label *ngIf="!r.Enemigo">—</label>
+              </td>
+
+              <td (dblclick)="r.Edit = true">
+                <label *ngIf="!r.Edit">{{r.Error}}</label>
+                
+                <textarea class="form-control" *ngIf="r.Edit" style="text-align: center;" [(ngModel)]="r.Error">{{r.Error}}</textarea>
               </td>
 
               <td width="1" style="vertical-align: middle;">
-                <a class="btn btn-white btn-bitbucket" data-toggle="modal" data-target="#modalEdit" (click)="SelectedRecord = r"> <i class="fas fa-cog"></i></a>
-
+                <!--<a class="btn btn-white btn-bitbucket" data-toggle="modal" data-target="#modalEdit" (click)="SelectedRecord = r"> <i class="fas fa-edit"></i></a>-->
+                <a *ngIf="!r.Edit" class="btn btn-white btn-bitbucket" (click)="r.Edit = true"> <i class="fas fa-edit"></i></a>
+                <a *ngIf="r.Edit" class="btn btn-white btn-bitbucket" (click)="updateRecord(r)"> <i class="fas fa-check" ></i></a>
               </td>
 
+
+      
+
+
+              <td width="1" style="vertical-align: middle;" *ngIf="anyRecordEditing()">
+                <a *ngIf="r.Edit" class="btn btn-white btn-bitbucket" (click)="r.Edit = false"> <i class="fas fa-times"></i></a>
+              </td>
+
+              <td width="1" style="vertical-align: middle;">
+                <a class="btn btn-white btn-bitbucket" (click)="SelectedRecord = r"  data-toggle="modal" data-target="#modalDelete"> <i class="fas fa-trash"></i></a>
+              </td>
 
             </tr>
 
@@ -112,7 +120,6 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" (click)="getRecordsByTypes()" data-dismiss="modal"><i class="fa fa-search"></i></button>
-        <button type="button" class="btn btn-white" data-dismiss="modal">Cancelar</button>
 
       </div>
     </div>
@@ -166,38 +173,32 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" (click)="searchRecordsByChampions()" data-dismiss="modal" [disabled]="SearchCampeones.length == 0"><i class="fa fa-search"></i></button>
         <button type="button" class="btn btn-danger" (click)="clearList()" [disabled]="SearchCampeones.length == 0"><i class="fa fa-trash" ></i></button>
-        <button type="button" class="btn btn-white" data-dismiss="modal">Cancelar</button>
 
       </div>
     </div>
   </div>
 </div>
 
-<div class="modal inmodal" id="modalEdit" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal inmodal" id="modalDelete" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-lg">
 
-    <div class="modal-content animated fadeInDown">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <i class="fa fa-edit modal-icon"></i>
-        <h4 class="modal-title"> Edición de Registro</h4>
-        <small>Haga el cambio que desee a su registro.</small>
-      </div>
+    <div class="modal-content animated fadeInDown text-center">
+
       <div class="modal-body">
 
+        <div class="form-group">
+          <label>¿Estás seguro de eliminar este registro?</label>
+        </div>
+        <div class="form-group">
+          <button type="button" class="btn btn-danger" (click)="deleteRecord(SelectedRecord.Id)" data-dismiss="modal"><i class="fa fa-trash"></i> ELIMINAR</button>
+        </div>
 
-        <textarea class="form-control" [(ngModel)]="SelectedRecord.Error" type="text" rows="8"></textarea>
 
-
-
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" (click)="updateRecord(SelectedRecord)" data-dismiss="modal"><i class="fa fa-edit"></i> Editar</button>
-        <button type="button" class="btn btn-danger" (click)="deleteRecord(SelectedRecord.Id)" data-dismiss="modal"><i class="fa fa-trash"></i> Eliminar</button>
-        <button type="button" class="btn btn-white" data-dismiss="modal">Cancelar</button>
 
       </div>
+  
+
+
     </div>
   </div>
 </div>

@@ -5,6 +5,7 @@ import { Usuario } from '../../../models/Usuario';
 import { AppService } from '../../../services/app.service';
 import { JwtService } from '../../../jwt/jwt.service';
 import { AuthenticationService } from '../../../services/auth.service';
+import { debug } from 'util';
 
 declare var jQuery:any;
 
@@ -51,6 +52,22 @@ export class NavigationComponent {
   logOut() {
     this.authService.logOut();
     this.router.navigate(['login']);
+
+  }
+
+  getRole(): string {
+
+    if (this.Privilegio == 1)
+      return "";
+
+    if (this.Privilegio == 2)
+      return "Moderador";
+
+    if (this.Privilegio == 3)
+      return "Administrador";
+
+    if (this.Privilegio == 4)
+      return "Super Administrador";
 
   }
   

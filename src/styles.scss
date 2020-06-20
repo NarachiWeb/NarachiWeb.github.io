@@ -16,10 +16,10 @@ textarea{
 
 .form-control:focus {
   border-color: #477096;
-  box-shadow: 0 0 0 2px #fff inset;
-}
+/*  box-shadow: 0 0 0 2px #fff inset;
+*/}
 
-
+/*
 .form-check {
   padding: .4rem;
   padding-left: 1.25rem;
@@ -44,7 +44,7 @@ textarea{
   background: #2f4050;
   border-color: #2f4050;
   box-shadow: 0 0 0 2px #fff inset;
-}
+}*/
 
 .nav > li.active {
   border-left: 4px solid #fff;
@@ -54,4 +54,8 @@ textarea{
 .tabs-container .nav-tabs > li a:hover {
   background: #ffffff;
   border-color: #eaeaea;
+}
+
+ .space{
+    margin-left: 10px;
 }

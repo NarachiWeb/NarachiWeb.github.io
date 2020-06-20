@@ -8,5 +8,6 @@ export class Registro {
     CreadoEn: Date;
     EditadoEn: Date;
     Privado: boolean = true;
+    Edit: boolean;
 
 }

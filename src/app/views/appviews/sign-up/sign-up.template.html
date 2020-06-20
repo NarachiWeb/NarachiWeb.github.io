@@ -1,17 +1,25 @@
-<div class="middle-box text-center loginscreen  animated fadeInDown">
+<div class="middle-box  loginscreen  animated fadeInDown">
   <div class="ibox-content">
 
     <div class="m-t" role="form" action="#">
       <h2>Registrarse en Narachi</h2>
       <hr />
       <div class="form-group">
+        <label>Nombre de Usuario</label>
         <input type="text" class="form-control" placeholder="Username" [(ngModel)]="Usuario.Nickname">
       </div>
       <div class="form-group">
+        <label>Correo electrónico</label>
         <input type="email" class="form-control" placeholder="Correo" [(ngModel)]="Usuario.Correo">
       </div>
       <div class="form-group">
+        <label>Contraseña</label>
         <input type="password" class="form-control" placeholder="Contraseña" [(ngModel)]="Usuario.Password">
+      </div>
+      <div class="form-group" *ngIf="error" (click)="error = null">
+        <div class="alert alert-danger">
+          {{error}}
+        </div>
       </div>
 
       <button type="submit" class="btn btn-primary block full-width m-b" (click)="Registrarse()">Registrarse</button>

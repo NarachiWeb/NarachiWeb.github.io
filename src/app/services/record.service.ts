@@ -19,6 +19,7 @@ export class RecordService {
     private _GetMyRecordsByEnemy = environment.apiUrl + "api/Registro/GetMyRecordsByEnemy";
     private _UpdateRecord = environment.apiUrl + "api/Registro/Update";
     private _DeleteRecord = environment.apiUrl + "api/Registro/Delete";
+    private _GetRecordsOfUser = environment.apiUrl + "api/Registro/GetRecordsOfUser";
 
     constructor(private jwtService: JwtService) {
     }
@@ -61,5 +62,9 @@ export class RecordService {
 
     public DeleteRecord(Id: string): Observable<Response> {
         return this.jwtService.delete(this._DeleteRecord + "?Id=" + Id);
+    }
+
+    public GetRecordsOfUser(Id: string): Observable<Response> {
+        return this.jwtService.get(this._GetRecordsOfUser + "?Id=" + Id);
     }
 }
