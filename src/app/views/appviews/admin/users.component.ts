@@ -5,6 +5,8 @@ import { Usuario } from '../../../models/Usuario';
 import { AppService } from '../../../services/app.service';
 import { Rol } from '../../../models/Rol';
 import { JwtService } from '../../../jwt/jwt.service';
+import { Registro } from '../../../models/Registro';
+import { RecordService } from '../../../services/record.service';
 
 @Component({
   selector: 'users',
@@ -17,8 +19,13 @@ export class UsersComponent {
   Usuarios = new Array<Usuario>();
   User = new Usuario();
   Roles = new Array<Rol>();
+  Loading = false;
+  LoadingRecords = false;
+  Registros = new Array<Registro>();
+  user: string;
+  SelectedRecord = new Registro();
 
-  constructor(private notificationService: NotificationService, private userService: UserService, private appService: AppService, private jwtService: JwtService) {
+  constructor(private notificationService: NotificationService, private userService: UserService, private appService: AppService, private jwtService: JwtService, private recordService: RecordService) {
   }
 
   ngOnInit() {
@@ -28,12 +35,13 @@ export class UsersComponent {
   }
 
   getUsers() {
+    this.Loading = true;
     this.userService.list().subscribe(us => {
 
       var Result = JSON.parse(us.text());
 
       this.Usuarios = <Usuario[]>Result;
-
+      this.Loading = false;
     });
 
     
@@ -102,5 +110,47 @@ export class UsersComponent {
   }
 
   cameraButton(event) { }
+
+  getRecordsOfUser(user: Usuario) {
+    this.LoadingRecords = true;
+    this.user = user.Nickname;
+    this.recordService.GetRecordsOfUser(user.Id).subscribe(us => {
+      this.LoadingRecords = false;
+
+      var Result = JSON.parse(us.text());
+      this.Registros = <Registro[]>Result;
+
+    });
+  }
+
+  anyRecordEditing(): boolean {
+
+    var record = this.Registros.find(x => x.Edit);
+    return record != null;
+  }
+
+  updateRecord(registro: Registro) {
+
+    this.recordService.UpdateRecord(registro).subscribe(us => {
+      this.notificationService.showDialog("success", "Registro editado con éxito.", 4000);
+      registro.Edit = false;
+    });
+  }
+
+  deleteRecord(id: string) {
+    this.recordService.DeleteRecord(id).subscribe(us => {
+
+      this.Registros = this.Registros.filter(x => x.Id != id);
+
+      this.notificationService.showDialog("info", "Registro eliminado con éxito.", 4000);
+
+
+    });
+  }
+
+  clearList() {
+    this.Registros = new Array<Registro>();
+  }
+
 
 }

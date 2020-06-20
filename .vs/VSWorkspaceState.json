@@ -1,6 +1,16 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\src",
+    "\\src\\app",
+    "\\src\\app\\components",
+    "\\src\\app\\components\\common",
+    "\\src\\app\\components\\common\\layouts",
+    "\\src\\app\\components\\common\\navigation",
+    "\\src\\app\\views",
+    "\\src\\app\\views\\dashboards",
+    "\\src\\assets"
   ],
+  "SelectedNode": "\\src\\app\\components\\common\\layouts\\topNavigationLayout.component.ts",
   "PreviewInSolutionExplorer": false
 }

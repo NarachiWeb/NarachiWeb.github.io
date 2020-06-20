@@ -23,31 +23,30 @@
 
     <div *ngIf="Anotacion">
       <div class="ibox-title">
-        <label>Anotación</label>
+        <label>Anotación</label> <i class="fa fa-reply fa-2x" style="float: right; cursor: pointer" (click)="cancel()"></i>
       </div>
       <div class="ibox-content">
-        <div class=" form-group">
+        <div class="form-group">
           <textarea type="text" rows="3" class="form-control" [(ngModel)]="Registro.Error"></textarea>
         </div>
         <div class="form-group">
+
           <div class="form-check">
             <input class="form-group" type="checkbox" (change)="Registro.Privado = !Registro.Privado" [checked]="Registro.Privado" />
+
             <label class="form-check-label">Registro Privado
             <i class="fa fa-lock" *ngIf="Registro.Privado"></i>
             <i class="fa fa-unlock" *ngIf="!Registro.Privado"></i>
-
             </label>
           </div>
 
         </div>
-        <button class="btn btn-success" type="button" (click)="newRecord()"> Registrar</button>
-        <button class="btn btn-danger" type="button" (click)="cancel()">Cancelar</button>
-
+          <button class="btn btn-success" type="button" (click)="newRecord()"> Registrar</button>
       </div>
     </div>
 
     <div *ngIf="ErrorConCampeon">
-      <div class="ibox-title">  <label>Error con campeón</label> </div>
+      <div class="ibox-title">  <label>Error con campeón</label> <i class="fa fa-reply fa-2x" style="float: right; cursor: pointer" (click)="cancel()"></i> </div>
       <div class="ibox-content">
         <div class="row" *ngIf="Galeria">
 
@@ -102,7 +101,6 @@
             </div>
 
             <button class="btn btn-success" type="button" (click)="newRecord()" [disabled]="!Campeon"> Registrar</button>
-            <button class="btn btn-danger" type="button" (click)="cancel()"> Cancelar</button>
           </div>
 
 
@@ -120,7 +118,7 @@
 
     <div *ngIf="ErrorContraCampeon">
       <div class="ibox-title">
-        <label>Error contra campeón</label>
+        <label>Error contra campeón</label> <i class="fa fa-reply fa-2x" style="float: right; cursor: pointer" (click)="cancel()"></i>
       </div>
       <div class="ibox-content">
 
@@ -152,30 +150,30 @@
             <button class="btn btn-danger" type="button" (click)="cancel()" *ngIf="Galeria"> Cancelar</button>
           </div>
         </div>
-
-        <div class="form-group" *ngIf="!Galeria">
-          <div style="display: inline-flex">
-            <a *ngIf="!Campeon" (click)="Galeria = true; Target = 'Campeon';">Elegir Campeon</a>
-            <div class="form-group" (click)="Campeon = null" *ngIf="Campeon">  <a class="btn btn-white btn-bitbucket"> <i class="fa fa-times"></i></a></div>
-            <div class="form-group" style="margin-left: 10px" *ngIf="Campeon"> <img src="assets/Champions/{{Campeon.Nombre}}.png" width="30" height="30" /> </div>
-            <div class="form-group" style="margin-left: 10px" *ngIf="Campeon"> <h2>{{Campeon.Nombre}}</h2> </div>
+        <div *ngIf="!Galeria" class="animated fadeIn">
+          <div class="form-group">
+            <div style="display: inline-flex">
+              <a *ngIf="!Campeon" (click)="Galeria = true; Target = 'Campeon';">Seleccionar Campeon</a>
+              <div class="form-group" (click)="Campeon = null" *ngIf="Campeon">  <a class="btn btn-white btn-bitbucket"> <i class="fa fa-times"></i></a></div>
+              <div class="form-group" style="margin-left: 10px" *ngIf="Campeon"> <img src="assets/Champions/{{Campeon.Nombre}}.png" width="30" height="30" /> </div>
+              <div class="form-group" style="margin-left: 10px" *ngIf="Campeon"> <h2>{{Campeon.Nombre}}</h2> </div>
+            </div>
           </div>
-        </div>
 
-        <div class="form-group" *ngIf="!Galeria">
-          <div style="display: inline-flex">
-            <a *ngIf="!Enemigo" (click)="Galeria = true; Target = 'Enemigo';">Elegir Enemigo</a>
-            <div class="form-group" (click)="Enemigo = null" *ngIf="Enemigo">  <a class="btn btn-white btn-bitbucket"> <i class="fa fa-times"></i></a></div>
-            <div class="form-group" style="margin-left: 10px" *ngIf="Enemigo"> <img src="assets/Champions/{{Enemigo.Nombre}}.png" width="30" height="30" /> </div>
-            <div class="form-group" style="margin-left: 10px" *ngIf="Enemigo"> <h2>{{Enemigo.Nombre}}</h2> </div>
+          <div class="form-group">
+            <div style="display: inline-flex">
+              <a *ngIf="!Enemigo" (click)="Galeria = true; Target = 'Enemigo';">Seleccionar Enemigo</a>
+              <div class="form-group" (click)="Enemigo = null" *ngIf="Enemigo">  <a class="btn btn-white btn-bitbucket"> <i class="fa fa-times"></i></a></div>
+              <div class="form-group" style="margin-left: 10px" *ngIf="Enemigo"> <img src="assets/Champions/{{Enemigo.Nombre}}.png" width="30" height="30" /> </div>
+              <div class="form-group" style="margin-left: 10px" *ngIf="Enemigo"> <h2>{{Enemigo.Nombre}}</h2> </div>
+            </div>
           </div>
-        </div>
 
 
-        <div *ngIf="!Galeria">
 
 
-          <div class=" form-group">
+
+          <div class="form-group">
             <textarea type="text" rows="3" class="form-control" [(ngModel)]="Registro.Error" [disabled]="!Campeon || !Enemigo"></textarea>
           </div>
           <div class="form-group">
@@ -191,7 +189,7 @@
             </div>
           </div>
           <button class="btn btn-success" type="button" (click)="newRecord()" [disabled]="!Campeon || !Enemigo"> Registrar</button>
-          <button class="btn btn-danger" type="button" (click)="cancel()"> Cancelar</button>
+          <!--<button class="btn btn-danger space" type="button" (click)="cancel()"> Cancelar</button>-->
 
         </div>
       </div>
