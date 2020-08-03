@@ -20,6 +20,7 @@ export class RecordService {
     private _UpdateRecord = environment.apiUrl + "api/Registro/Update";
     private _DeleteRecord = environment.apiUrl + "api/Registro/Delete";
     private _GetRecordsOfUser = environment.apiUrl + "api/Registro/GetRecordsOfUser";
+    private _GetRecordsByChampionName = environment.apiUrl + "api/Registro/GetRecordsFromChampionName";
 
     constructor(private jwtService: JwtService) {
     }
@@ -46,7 +47,7 @@ export class RecordService {
 
     public ListByIds(Ids: string[]): Observable<Response> {
         return this.jwtService.post(this._List, Ids);
-    }x
+    }
 
     public GetMyRecordsByChampion(Id: string): Observable<Response> {
         return this.jwtService.get(this._GetMyRecordsByChampion + "?Id=" + Id);
@@ -66,5 +67,9 @@ export class RecordService {
 
     public GetRecordsOfUser(Id: string): Observable<Response> {
         return this.jwtService.get(this._GetRecordsOfUser + "?Id=" + Id);
+    }
+
+    public GetRecordsByChampionName(Name: string): Observable<Response> {
+        return this.jwtService.get(this._GetRecordsByChampionName + "?Champion=" + Name);
     }
 }

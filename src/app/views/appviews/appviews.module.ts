@@ -19,6 +19,7 @@ import { ChampionsComponent } from "./admin/champions.component";
 import { UsersComponent } from "./admin/users.component";
 import { NewsComponent } from "./admin/news.component";
 import { BsDropdownModule, PaginationModule } from 'ngx-bootstrap';
+import { ChampionComponent } from "./records/champion.component";
 //import { DemoMaterialModule } from "../../material/material-module";
 
 @NgModule({
@@ -32,7 +33,8 @@ import { BsDropdownModule, PaginationModule } from 'ngx-bootstrap';
     RecordsComponent,
     ChampionsComponent,
     UsersComponent,
-    NewsComponent
+    NewsComponent,
+    ChampionComponent
   ],
   imports: [
     JwtModule,
@@ -58,7 +60,9 @@ import { BsDropdownModule, PaginationModule } from 'ngx-bootstrap';
     RecordsComponent,
     ChampionsComponent,
     UsersComponent,
-    NewsComponent
+    NewsComponent,
+    ChampionComponent
+
 
 
 

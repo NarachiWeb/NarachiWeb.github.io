@@ -6,10 +6,13 @@ import { Campeon } from '../../../models/Campeon';
 import { TipoDeRegistro } from '../../../models/TipoDeRegistro';
 import { NotificationService } from '../../../services/notification.service';
 import { DatePipe } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'list',
-  templateUrl: 'list.template.html'
+  templateUrl: 'list.template.html',
+  styleUrls: ['list.component.css']
+
 })
 export class ListComponent {
 
@@ -28,7 +31,12 @@ export class ListComponent {
   Bolt: boolean = false;
   Editing: boolean = false;
 
-  constructor(private recordService: RecordService, private campeonService: ChampionService, private notificationService: NotificationService, private datePipe: DatePipe) {
+  constructor(
+    private recordService: RecordService,
+    private campeonService: ChampionService,
+    private notificationService: NotificationService,
+    private datePipe: DatePipe,
+    private router: Router) {
   }
 
   ngOnInit() {
@@ -169,6 +177,14 @@ export class ListComponent {
 
     var record = this.Registros.find(x => x.Edit);
     return record != null;
+  }
+
+  openRecord(name: string) {
+    //this.router.navigate(['records/champion'], { queryParams: { name: name } });
+    debugger;
+    var currentUrl = window.location.origin;
+
+    window.open(currentUrl + "/#/records/champion?name=" + name, "_blank");
   }
 
 }
