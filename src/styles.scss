@@ -19,7 +19,7 @@ textarea{
 /*  box-shadow: 0 0 0 2px #fff inset;
 */}
 
-/*
+/**/
 .form-check {
   padding: .4rem;
   padding-left: 1.25rem;
@@ -44,18 +44,56 @@ textarea{
   background: #2f4050;
   border-color: #2f4050;
   box-shadow: 0 0 0 2px #fff inset;
+}
+
+/*.nav-link.active {
+  color: #495057;
+  background-color: #fff;
+  border-color: #dee2e6 #dee2e6 #fff;
 }*/
 
 .nav > li.active {
   border-left: 4px solid #fff;
   background: #293846;
 
+
 }
 .tabs-container .nav-tabs > li a:hover {
   background: #ffffff;
   border-color: #eaeaea;
+
+}
+
+.nav-tabs .nav-link {
+  border: 1px solid transparent;
+  border-top-left-radius: .25rem;
+  border-top-right-radius: .25rem;
+}
+.nav-tabs > li > a {
+  color: #A7B1C2;
+  font-weight: 600;
+  padding: 10px 20px 10px 25px;
+
+
+}
+.asdasd {
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+}
+
+.nav-link.active {
+  color: #495057 !important;
+  background-color: #fff !important;
+  border-color: #dee2e6 #dee2e6 #fff !important;
 }
 
  .space{
     margin-left: 10px;
 }
+
+ table th{
+     color: black;
+ }

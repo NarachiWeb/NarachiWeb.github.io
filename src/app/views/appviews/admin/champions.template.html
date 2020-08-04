@@ -4,7 +4,7 @@
 
     <div class="col-lg-4">
       <div class="ibox-title"><h4>Campeones</h4></div>
-      <div class="ibox-content">
+      <div class="ibox-content p-xl">
 
         <div class="form-group">
           <button class="btn btn-success" type="button" data-toggle="modal" data-target="#modalNewCampeon">Agregar</button>
@@ -15,39 +15,34 @@
           <input class="form-control" type="search" value="Clear this." name="Search" [(ngModel)]="Search" (input)="filterSearch()" placeholder="Aatrox, Kha'Zix, Morgana..."/>
         </div>
 
-
-        <div class="table-responsive animated fadeInDown">
-          <table class="table table-striped table-bordered table-hover dataTables-example text-center">
+        <div class="table-responsive m-t animated fadeInDown" *ngIf="List.length >= 1">
+          <table class="table invoice-table">
             <thead>
               <tr>
-                <th class="text-center">Campeon</th>
-                <th class="text-center">Nombre</th>
-                <th class="text-center">Rol</th>
+                <th>Campeon</th>
+                <th>Nombre</th>
+                <th>Rol</th>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let c of List" style="cursor: pointer;" (click)="Campeon = c">
-                <td width="1" class="text-center">
-                  <div>
+                <td>
+                  <img src="assets/Champions/{{c.Nombre}}.png" width="40" height="40" />
 
-                    <img src="assets/Champions/{{c.Nombre}}.png" width="40" height="40" />
-                  </div>
                 </td>
-                <td width="1" class="text-center">
+                <td style="vertical-align: middle;">
                   {{c.Nombre}}
-                <td width="1">
-
+                </td>
+                <td style="vertical-align: middle;">
                   {{c.Roles.Nombre}}
                 </td>
-
-
               </tr>
-
-
+     
             </tbody>
-
           </table>
         </div>
+
+
       </div>
     </div>
     <div class="col-lg-8">

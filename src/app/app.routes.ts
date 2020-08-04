@@ -22,6 +22,7 @@ import { CanActivateViaAuthGuard } from "./guards/auth-guard-service";
 import { UsersComponent } from "./views/appviews/admin/users.component";
 import { NewsComponent } from "./views/appviews/admin/news.component";
 import { RoleGuardService } from "./guards/role-guard-service";
+import { ChampionComponent } from "./views/appviews/records/champion.component";
 
 export const ROUTES:Routes = [
   // Main redirect
@@ -56,6 +57,7 @@ export const ROUTES:Routes = [
     children: [
       { path: 'add', component: AddRecordComponent },
       { path: 'list', component: ListComponent },
+      { path: 'champion', component: ChampionComponent },
     ]
   },
   {
