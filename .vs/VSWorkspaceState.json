@@ -4,13 +4,13 @@
     "\\src",
     "\\src\\app",
     "\\src\\app\\environments",
-    "\\src\\app\\services",
     "\\src\\app\\views",
     "\\src\\app\\views\\appviews",
     "\\src\\app\\views\\appviews\\admin",
     "\\src\\app\\views\\appviews\\records",
+    "\\src\\assets",
     "\\src\\environments"
   ],
-  "SelectedNode": "\\src\\app\\views\\appviews\\admin\\champions.template.html",
+  "SelectedNode": "\\src\\app\\environments\\environment.ts",
   "PreviewInSolutionExplorer": false
 }
