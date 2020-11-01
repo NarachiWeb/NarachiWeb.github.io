@@ -8,8 +8,9 @@
     "\\src\\app\\views\\appviews",
     "\\src\\app\\views\\appviews\\admin",
     "\\src\\assets",
+    "\\src\\assets\\Champions",
     "\\src\\environments"
   ],
-  "SelectedNode": "\\src\\app\\views\\appviews\\admin\\champions.component.ts",
+  "SelectedNode": "\\src\\app\\environments\\environment.ts",
   "PreviewInSolutionExplorer": false
 }
