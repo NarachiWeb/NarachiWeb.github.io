@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://localhost:44312/'
-  //apiUrl: 'https://narachi.herokuapp.com/'
+  //apiUrl: 'https://localhost:44312/'
+  apiUrl: 'https://narachi.herokuapp.com/'
 };
 
 /*
