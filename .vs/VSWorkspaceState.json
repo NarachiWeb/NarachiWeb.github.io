@@ -7,10 +7,9 @@
     "\\src\\app\\views",
     "\\src\\app\\views\\appviews",
     "\\src\\app\\views\\appviews\\admin",
-    "\\src\\app\\views\\appviews\\records",
     "\\src\\assets",
     "\\src\\environments"
   ],
-  "SelectedNode": "\\src\\app\\environments\\environment.ts",
+  "SelectedNode": "\\src\\app\\views\\appviews\\admin\\champions.component.ts",
   "PreviewInSolutionExplorer": false
 }
