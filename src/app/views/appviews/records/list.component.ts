@@ -7,6 +7,8 @@ import { TipoDeRegistro } from '../../../models/TipoDeRegistro';
 import { NotificationService } from '../../../services/notification.service';
 import { DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
+import { PaginationParams } from '../../../models/PaginationParams';
+import { GridDTO } from '../../../models/GridDTO';
 
 @Component({
   selector: 'list',
@@ -30,6 +32,7 @@ export class ListComponent {
   Search: string;
   Bolt: boolean = false;
   Editing: boolean = false;
+  Grid = new GridDTO<Registro>();
 
   constructor(
     private recordService: RecordService,
@@ -48,9 +51,9 @@ export class ListComponent {
 
   getRecords() {
     this.Loading = true;
-    this.recordService.List().subscribe(us => {
+    this.recordService.getPagedList({ PageSize: 10, PageNumber: 1 }).subscribe(us => {
       var Result = JSON.parse(us.text());
-      this.Registros = <Registro[]>Result;
+      this.Grid = <GridDTO<Registro>>Result;
       this.Loading = false;
     },
       error => { this.Loading = false;}
@@ -185,6 +188,17 @@ export class ListComponent {
     var currentUrl = window.location.origin;
 
     window.open(currentUrl + "/#/records/champion?name=" + name, "_blank");
+  }
+
+  getPage(params: PaginationParams) {
+    this.Loading = true;
+    this.recordService.getPagedList(params).subscribe(us => {
+      var Result = JSON.parse(us.text());
+      this.Grid = <GridDTO<Registro>>Result;
+      this.Loading = false;
+    },
+      error => { this.Loading = false; }
+    );
   }
 
 }

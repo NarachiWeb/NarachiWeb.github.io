@@ -5,7 +5,7 @@
         <div class="profile-element" dropdown [routerLink]="['/profile']">
           <img alt="image" class="img-circle" src="{{Usuario.Avatar}}" width="50" height="50" *ngIf="Usuario.Avatar">
           <i class="fa fa-user-circle fa-3x" *ngIf="!Usuario.Avatar" style="color: snow"></i>
-          <a *ngIf="Usuario.Nombre && Usuario.Apellido">      <span class="block m-t-xs font-bold">{{Usuario.Nombre + ' ' + Usuario.Apellido}} </span></a>
+          <a>      <span class="block m-t-xs font-bold">{{Usuario.Nickname}} </span></a>
           <a *ngIf="Privilegio > 1">      <span class="block m-t-xs font-bold">({{getRole()}})</span></a>
           <a *ngIf="!Usuario.Nombre || !Usuario.Apellido"><span class="block m-t-xs"><b>Completar Perfil <i class="fa fa-exclamation-circle"></i></b></span></a>
 
