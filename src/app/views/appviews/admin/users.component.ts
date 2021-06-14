@@ -7,6 +7,8 @@ import { Rol } from '../../../models/Rol';
 import { JwtService } from '../../../jwt/jwt.service';
 import { Registro } from '../../../models/Registro';
 import { RecordService } from '../../../services/record.service';
+import { GridDTO } from '../../../models/GridDTO';
+import { PaginationParams } from '../../../models/PaginationParams';
 
 @Component({
   selector: 'users',
@@ -25,6 +27,9 @@ export class UsersComponent {
   user: string;
   SelectedRecord = new Registro();
 
+  Grid = new GridDTO<Usuario>();
+
+
   constructor(private notificationService: NotificationService, private userService: UserService, private appService: AppService, private jwtService: JwtService, private recordService: RecordService) {
   }
 
@@ -36,11 +41,11 @@ export class UsersComponent {
 
   getUsers() {
     this.Loading = true;
-    this.userService.list().subscribe(us => {
+    this.userService.getPagedUsers({ PageNumber: 1, PageSize: 10 }).subscribe(us => {
 
       var Result = JSON.parse(us.text());
 
-      this.Usuarios = <Usuario[]>Result;
+      this.Grid = <GridDTO<Usuario>>Result;
       this.Loading = false;
     });
 
@@ -152,5 +157,15 @@ export class UsersComponent {
     this.Registros = new Array<Registro>();
   }
 
+  getPage(params: PaginationParams) {
+    this.Loading = true;
+    this.recordService.getPagedList(params).subscribe(us => {
+      var Result = JSON.parse(us.text());
+      this.Grid = <GridDTO<Usuario>>Result;
+      this.Loading = false;
+    },
+      error => { this.Loading = false; }
+    );
+  }
 
 }

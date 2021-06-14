@@ -31,7 +31,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let u of Usuarios">
+          <tr *ngFor="let u of Grid.List">
             <td>
               <img class="img-circle" height="30" width="30" src="{{u.Avatar}}" alt="image" *ngIf="u.Avatar" />
               <i class="fa fa-user-circle fa-2x" *ngIf="!u.Avatar"></i>
@@ -46,7 +46,11 @@
           </tr>
         </tbody>
       </table>
+
+
     </div>
+
+    <nch-pagination [Grid]=Grid *ngIf="Grid.List.length != 0" (getPage)="getPage($event)"></nch-pagination>
 
   </div>
 

@@ -20,6 +20,7 @@ import { UsersComponent } from "./admin/users.component";
 import { NewsComponent } from "./admin/news.component";
 import { BsDropdownModule, PaginationModule } from 'ngx-bootstrap';
 import { ChampionComponent } from "./records/champion.component";
+import { NchPaginationComponent } from "../../pagination/nch-pagination.component";
 //import { DemoMaterialModule } from "../../material/material-module";
 
 @NgModule({
@@ -34,7 +35,8 @@ import { ChampionComponent } from "./records/champion.component";
     ChampionsComponent,
     UsersComponent,
     NewsComponent,
-    ChampionComponent
+    ChampionComponent,
+    NchPaginationComponent,
   ],
   imports: [
     JwtModule,
@@ -45,8 +47,8 @@ import { ChampionComponent } from "./records/champion.component";
     FormsModule,
     IboxtoolsModule,
     BsDropdownModule.forRoot(),
-    PaginationModule.forRoot()
-
+    PaginationModule.forRoot(),
+    
     //DemoMaterialModule,
 
   ],

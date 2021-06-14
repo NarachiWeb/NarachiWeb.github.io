@@ -13,9 +13,9 @@
 
 
           <div class="form-group">
-    <button type="button" class="btn btn-primary btn-outline" data-toggle="modal" data-target="#modalBusqueda"> <i class="fa fa-filter"></i> Parámetros de Búsqueda  </button>
-    <button type="button" class="btn btn-primary btn-outline" data-toggle="modal" data-target="#modalCampeones"> <i class="fa fa-search"></i> Búsqueda de Campeones </button>
-  </div>
+            <button type="button" class="btn btn-primary btn-outline" data-toggle="modal" data-target="#modalBusqueda"> <i class="fa fa-filter"></i> Parámetros de Búsqueda  </button>
+            <button type="button" class="btn btn-primary btn-outline" data-toggle="modal" data-target="#modalCampeones"> <i class="fa fa-search"></i> Búsqueda de Campeones </button>
+          </div>
 
 
           <div class="spiner-example" *ngIf="Loading">
@@ -26,13 +26,13 @@
             </div>
           </div>
 
-          <div class="table-responsive  animated fadeInDown" *ngIf="Registros.length > 0 && !Loading">
+          <div class="table-responsive  animated fadeInDown" *ngIf="Grid.List.length > 0 && !Loading">
             <table class="table invoice-table">
               <thead>
                 <tr>
                   <th>Registro</th>
-                  <th >Campeon</th>
-                  <th >Enemigo</th>
+                  <th>Campeon</th>
+                  <th>Enemigo</th>
                   <th class="text-center" *ngIf="!anyRecordEditing()"></th>
                   <th class="text-center"></th>
                   <th class="text-center" *ngIf="anyRecordEditing()"></th>
@@ -41,7 +41,7 @@
               </thead>
               <tbody>
 
-                <tr *ngFor="let r of Registros">
+                <tr *ngFor="let r of Grid.List">
 
                   <td (dblclick)="r.Edit = true" style="cursor: pointer;">
                     <label *ngIf="!r.Edit">{{r.Error}}</label>
@@ -49,8 +49,8 @@
                   </td>
 
                   <td width="1" style="vertical-align: middle; text-align: center">
-                      <img src="assets/Champions/{{r.Campeon.Nombre}}.png" width="30" height="30" *ngIf="r.Campeon" title="{{r.Campeon.Nombre}}" (click)="openRecord(r.Campeon.Nombre)" style="cursor: pointer;" />
-                      <label *ngIf="!r.Campeon">—</label>           
+                    <img src="assets/Champions/{{r.Campeon.Nombre}}.png" width="30" height="30" *ngIf="r.Campeon" title="{{r.Campeon.Nombre}}" (click)="openRecord(r.Campeon.Nombre)" style="cursor: pointer;" />
+                    <label *ngIf="!r.Campeon">—</label>
                   </td>
 
                   <td width="1" style="vertical-align: middle; text-align: center">
@@ -84,7 +84,10 @@
             </table>
           </div>
 
-          <div class="form-group text-center animated fadeInLeft" *ngIf="Registros.length == 0 && !Loading">
+
+          <nch-pagination [Grid]=Grid *ngIf="Grid.List.length != 0" (getPage)="getPage($event)"></nch-pagination>
+
+          <div class="form-group text-center animated fadeInLeft" *ngIf="Grid.List.length == 0 && !Loading">
             <h2>No se han encontrado resultados...</h2>
           </div>
 
@@ -93,38 +96,7 @@
 
         </div>
       </div>
-      <!--<div role="tabpanel" id="tab-2" class="tab-pane">
-        <div class="panel-body">
-
-
-
-
-
-          <div *ngFor="let t of Tipos" class="xD">
-            <div class="form-check">
-              <input class="form-group" type="checkbox" (change)="t.Checked = !t.Checked" />
-              <label class="form-check-label">{{t.Nombre}}</label>
-            </div>
-          </div>
-
-
-
-
-
-
-
-
-
-          <div class="lightBoxGallery">
-            <a *ngFor="let c of Campeones">
-              <img src="assets/Champions/{{c.Nombre}}.png" width="35" height="35" />
-
-            </a>
-          </div>
-
-
-        </div>
-      </div>-->
+   
     </div>
 
   </div>

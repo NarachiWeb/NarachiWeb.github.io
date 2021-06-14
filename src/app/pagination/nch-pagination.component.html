@@ -1,0 +1,27 @@
+
+<div class="wrapper wrapper-content" style="text-align: center">
+  <nav aria-label="Page navigation example">
+    <ul class="pagination">
+      <li class="page-item" *ngIf="Grid.HasPrevious" (click)="changePage({PageSize: 10, PageNumber: Grid.CurrentPage - 1})">
+        <a class="page-link"><i class="fas fa-arrow-left"></i></a>
+      </li>
+
+      <li class="page-item" *ngIf="Grid.HasPrevious" (click)="changePage({PageSize: 10, PageNumber: Grid.CurrentPage - 1})">
+        <a class="page-link">{{Grid.CurrentPage - 1}}</a>
+      </li>
+
+      <li class="page-item" *ngIf="Grid.CurrentPage != 0" (click)="changePage({PageSize: 10, PageNumber: Grid.CurrentPage + 1})">
+        <a class="page-link">{{Grid.CurrentPage}}</a>
+      </li>
+
+      <li class="page-item" *ngIf="Grid.HasNext" (click)="changePage({PageSize: 10, PageNumber: Grid.CurrentPage + 1})">
+        <a class="page-link">{{Grid.CurrentPage + 1}}</a>
+      </li>
+
+      <li class="page-item" *ngIf="Grid.HasNext" (click)="changePage({PageSize: 10, PageNumber: Grid.CurrentPage + 1})">
+        <a class="page-link"><i class="fas fa-arrow-right"></i></a>
+      </li>
+    </ul>
+
+  </nav>
+  </div>

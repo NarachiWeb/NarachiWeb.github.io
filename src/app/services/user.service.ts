@@ -5,6 +5,7 @@ import { Usuario } from '../models/Usuario';
 import { Observable } from 'rxjs/Observable';
 import { ChangePassword } from '../views/appviews/profile/profile.component';
 import { environment } from '../environments/environment';
+import { PaginationParams } from '../models/PaginationParams';
 
 @Injectable()
 export class UserService {
@@ -15,7 +16,7 @@ export class UserService {
   private _changePassword = environment.apiUrl + "api/Usuario/ChangePassword";
   private _list = environment.apiUrl + "api/Usuario/List";
   private _roles = environment.apiUrl + "api/Usuario/Roles";
-
+  private _pagedUsers = environment.apiUrl + "api/Usuario/PagedList";
 
   constructor(private http: Http, private _jwt: JwtService ) {
 
@@ -45,5 +46,8 @@ export class UserService {
     return this._jwt.get(this._roles);
   }
 
+  getPagedUsers(params: PaginationParams) {
+    return this._jwt.post(this._pagedUsers, params);
+  }
 
 } 
