@@ -3,14 +3,12 @@
     "",
     "\\src",
     "\\src\\app",
-    "\\src\\app\\environments",
+    "\\src\\app\\components",
+    "\\src\\app\\components\\common",
+    "\\src\\app\\components\\common\\navigation",
     "\\src\\app\\views",
-    "\\src\\app\\views\\appviews",
-    "\\src\\app\\views\\appviews\\admin",
-    "\\src\\assets",
-    "\\src\\assets\\Champions",
-    "\\src\\environments"
+    "\\src\\app\\views\\appviews"
   ],
-  "SelectedNode": "\\src\\app\\environments\\environment.ts",
+  "SelectedNode": "\\src\\app\\components\\common\\navigation\\navigation.template.html",
   "PreviewInSolutionExplorer": false
 }
