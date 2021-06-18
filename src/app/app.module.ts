@@ -8,7 +8,7 @@ import {ROUTES} from "./app.routes";
 import { AppComponent } from './app.component';
 import 'hammerjs';
 // App views
-import {DashboardsModule} from "./views/dashboards/dashboards.module";
+
 import {AppviewsModule} from "./views/appviews/appviews.module";
 
 // App modules/components
@@ -33,7 +33,6 @@ import { RoleGuardService } from './guards/role-guard-service';
   imports: [
     BrowserModule,
     HttpModule,
-    DashboardsModule,
     LayoutsModule,
     AppviewsModule,
     JwtModule,

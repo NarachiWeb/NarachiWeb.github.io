@@ -3,12 +3,9 @@
     "",
     "\\src",
     "\\src\\app",
-    "\\src\\app\\components",
-    "\\src\\app\\components\\common",
-    "\\src\\app\\components\\common\\navigation",
     "\\src\\app\\views",
     "\\src\\app\\views\\appviews"
   ],
-  "SelectedNode": "\\src\\app\\components\\common\\navigation\\navigation.template.html",
+  "SelectedNode": "\\src\\app\\views\\appviews\\appviews.module.ts",
   "PreviewInSolutionExplorer": false
 }
